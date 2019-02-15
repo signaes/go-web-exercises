@@ -6,6 +6,12 @@ import (
 	"text/template"
 )
 
+const (
+	a = iota
+	b
+	c
+)
+
 var tpl *template.Template
 
 func init() {
@@ -13,17 +19,17 @@ func init() {
 }
 
 func main() {
-	err := tpl.Execute(os.Stdout, nil)
+	err := tpl.Execute(os.Stdout, a)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	err = tpl.ExecuteTemplate(os.Stdout, "template.gohtml", nil)
+	err = tpl.ExecuteTemplate(os.Stdout, "template.gohtml", b)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	err = tpl.ExecuteTemplate(os.Stdout, "other.gohtml", nil)
+	err = tpl.ExecuteTemplate(os.Stdout, "other.gohtml", c)
 	if err != nil {
 		log.Fatalln(err)
 	}
