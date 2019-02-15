@@ -2,11 +2,24 @@ package main
 
 import (
 	"fmt"
+	"io"
+	"log"
+	"os"
 	"strings"
 )
 
 func main() {
-	fmt.Println(template("OK OK"))
+	html := template("OK OK")
+
+	fmt.Println(html)
+
+	file, err := os.Create("index.html")
+	defer file.Close()
+	if err != nil {
+		log.Fatal("Error creating file", err)
+	}
+
+	io.Copy(file, strings.NewReader(html))
 }
 
 func template(content string) string {
