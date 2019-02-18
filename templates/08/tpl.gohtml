@@ -7,8 +7,8 @@
     <body>
       {{.}}
       <ul>
-        {{range $i, $author := .}}
-        <li>{{$author.Name}} {{$author.Surname}}</li>
+        {{range .}}
+        <li>{{.Name}} {{.Surname}}</li>
         {{end}}
       </ul>
     </body>
