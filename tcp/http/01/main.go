@@ -41,7 +41,10 @@ func request(conn net.Conn) {
 
 		if i == 0 {
 			m := strings.Fields(ln)[0]
-			fmt.Println("\t•METHOD", m)
+			fmt.Println("\tMETHOD =", m)
+		} else if i == 1 {
+			uri := strings.Fields(ln)[1]
+			fmt.Println("\tURI =", uri)
 		}
 
 		if ln == "" {
