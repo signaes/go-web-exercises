@@ -26,7 +26,12 @@ func index(w http.ResponseWriter, req *http.Request) {
 		}
 	}
 
-	value, _ = strconv.Atoi(counter.Value)
+	value, err = strconv.Atoi(counter.Value)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	value++
 	counter.Value = strconv.Itoa(value)
 
