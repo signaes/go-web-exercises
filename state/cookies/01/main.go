@@ -19,29 +19,17 @@ func index(w http.ResponseWriter, req *http.Request) {
 	var value int
 	counter, err := req.Cookie("counter")
 
-	if err != nil {
+	if err == http.ErrNoCookie {
 		counter = &http.Cookie{
 			Name:  "counter",
 			Value: "0",
 		}
-	} else {
-		strValue := counter.Value
-
-		if strValue != "" {
-			value, err = strconv.Atoi(strValue)
-
-			if err != nil {
-				value = 0
-			}
-
-			value++
-		}
 	}
 
-	http.SetCookie(w, &http.Cookie{
-		Name:  "counter",
-		Value: strconv.Itoa(value),
-	})
+	value, _ = strconv.Atoi(counter.Value)
+	value++
+	counter.Value = strconv.Itoa(value)
 
+	http.SetCookie(w, counter)
 	io.WriteString(w, fmt.Sprintf("Hello: %d", value))
 }
