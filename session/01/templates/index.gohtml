@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+  </head>
+  <body>
+
+    <form method="post">
+      <input type="email" name="username" placeholder="email"><br>
+      <input type="text" name="firstname" placeholder="firstname"><br>
+      <input type="text" name="lastname" placeholder="lastname"><br>
+      <input type="submit">
+    </form>
+
+    {{if .First}}
+    USER NAME {{.UserName}}<br>
+    FIRST {{.First}}<br>
+    LAST {{.Last}}<br>
+    {{end}}
+
+    <br>
+    <h2>See <a href="/options">options</a></h2>
+  </body>
+</html>
